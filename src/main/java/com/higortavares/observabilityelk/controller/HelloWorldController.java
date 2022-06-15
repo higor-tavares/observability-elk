@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("hello")
 @Slf4j
 public class HelloWorldController {
-
   @GetMapping
   public ResponseEntity<?> sayHello() {
     log.info("say hello...");
