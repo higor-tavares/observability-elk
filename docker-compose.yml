@@ -3,7 +3,6 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
     container_name: elasticsearch
-    restart: always
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
@@ -25,7 +24,6 @@ services:
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.12.0
-    restart: always
     environment:
       SERVER_NAME: kibana
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
