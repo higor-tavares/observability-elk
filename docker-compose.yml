@@ -35,6 +35,7 @@ services:
     networks:
       - observability-elk
   logstash:
+    container_name: logstash
     image: docker.elastic.co/logstash/logstash:6.4.0
     command: logstash -f /usr/share/logstash/config/logstash.conf
     volumes:
