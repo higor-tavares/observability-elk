@@ -21,7 +21,7 @@ services:
     ports:
       - "9200:9200"
     networks:
-      - observability-elk
+      - internal
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.12.0
@@ -33,7 +33,7 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - observability-elk
+      - internal
   logstash:
     container_name: logstash
     image: docker.elastic.co/logstash/logstash:6.4.0
@@ -48,9 +48,9 @@ services:
     ports:
       - 12201:12201/udp
     networks:
-      - observability-elk
+      - internal
 networks:
-  observability-elk:
+  internal:
     driver: bridge
 volumes:
   elasticsearch-data-volume:
