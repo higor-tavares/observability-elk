@@ -4,6 +4,7 @@ import com.higortavares.observabilityelk.model.User;
 import com.higortavares.observabilityelk.repository.UserRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ public class UserService {
 
   public void save(User user) {
     try {
-      userRepository.save(user);
+      User userResponse = userRepository.save(user);
+      MDC.put("userId", userResponse.getId().toString());
       log.info("Usuário {} criado com sucesso!", user);
     } catch (Exception e) {
       log.error("Ocorreu uma falha ao salvar o usuario {} : {}", user, e.getMessage());
