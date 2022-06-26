@@ -1,17 +1,19 @@
 <configuration>
+    <springProperty name="logHost" source="logstash.host" />
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}  - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="GELF" class="biz.paluch.logging.gelf.logback.GelfLogbackAppender">
-        <host>udp:logstash</host>
+        <host>udp:${logHost}</host>
         <port>12201</port>
         <version>1.0</version>
         <extractStackTrace>true</extractStackTrace>
         <filterStackTrace>true</filterStackTrace>
         <timestampPattern>dd/MM/yyyy HH:mm:ss,SSS</timestampPattern>
         <maximumMessageSize>8192</maximumMessageSize>
+        <includeFullMdc>true</includeFullMdc>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
