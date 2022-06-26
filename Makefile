@@ -6,7 +6,7 @@ build:
 dependencies:
 	docker-compose up -d
 run:
-	docker run -p 8080:8080 --network=observability-elk_internal -e="logHost=logstash" --name=${APPLICATION} ${APPLICATION}
+	docker run -p 8080:8080 --network=observability-elk_internal -e="LOGSTASH_HOST=logstash" --name=${APPLICATION} ${APPLICATION}
 clean:
 	docker container stop ${APPLICATION}
 	docker-compose down
