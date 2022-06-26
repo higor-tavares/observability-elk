@@ -15,15 +15,10 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
-  public void save(User user) {
-    try {
+  public void save(User user){
       User userResponse = userRepository.save(user);
       MDC.put("userId", userResponse.getId().toString());
       log.info("Usuário {} criado com sucesso!", user);
-    } catch (Exception e) {
-      log.error("Ocorreu uma falha ao salvar o usuario {} : {}", user, e.getMessage());
-      throw  new RuntimeException("Erro ao salvar o usuário");
-    }
   }
   public List<User> findAll() {
     log.info("listando usuarios ...");
