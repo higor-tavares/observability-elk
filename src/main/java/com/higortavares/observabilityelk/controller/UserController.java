@@ -1,7 +1,7 @@
 package com.higortavares.observabilityelk.controller;
 
 import com.higortavares.observabilityelk.annotations.LoggableHttpRequest;
-import com.higortavares.observabilityelk.model.User;
+import com.higortavares.observabilityelk.model.UserRequest;
 import com.higortavares.observabilityelk.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class UserController {
 
   @LoggableHttpRequest
   @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> save(@RequestBody User user) {
+  public ResponseEntity<?> save(@RequestBody UserRequest user) {
     try {
-      userService.save(user);
+      userService.save(user.userEntity());
       return ResponseEntity.status(HttpStatus.CREATED).build();
     } catch (Exception e) {
       log.error("Não foi possivel salvar o usuario {} - ERRO: {}", user, e.getMessage());
