@@ -49,6 +49,13 @@ services:
       - 12201:12201/udp
     networks:
       - internal
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports: 
+      - "9411:9411"
+    networks:
+      - internal
 networks:
   internal:
     driver: bridge
