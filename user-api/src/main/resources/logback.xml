@@ -1,5 +1,6 @@
 <configuration>
     <springProperty name="logHost" source="logstash.host" />
+    <springProperty name="APP" source="spring.application.name"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}  - %msg%n</pattern>
@@ -14,6 +15,7 @@
         <timestampPattern>dd/MM/yyyy HH:mm:ss,SSS</timestampPattern>
         <maximumMessageSize>8192</maximumMessageSize>
         <includeFullMdc>true</includeFullMdc>
+        <additionalFields>application=${APP}</additionalFields>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
